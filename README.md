@@ -1,56 +1,95 @@
-# Welcome to your Expo app 👋
+# Pickup Sports
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Pickup Sports is a mobile application for discovering and organizing local sports and physical activities. Users will be able to browse nearby events on a map, create their own events, and indicate whether they plan to attend.
 
-## Get started
+The goal is to make it easier to find casual games, meet people with similar interests, and stay active without needing an existing team or group.
 
-1. Install dependencies
+## Current Status
 
-   ```bash
-   npm install
-   ```
+The project is in early development. The current version includes an interactive map with example sporting events and custom markers showing the number of attendees.
 
-2. Start the app
+## Planned Features
 
-   ```bash
-   npx expo start
-   ```
+* Browse nearby sporting events on a map
+* View event details by selecting a marker
+* Create and publish an event
+* Join or leave an event
+* Set player limits and skill levels
+* Filter events by sport, date, and distance
+* Create an account and user profile
+* View hosted and joined events
+* Receive event reminders
+* Report inappropriate events or users
 
-In the output, you'll find options to open the app in a
+## Tech Stack
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+* React Native
+* Expo
+* TypeScript
+* Expo Router
+* React Native Maps
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+A backend and authentication service will be added as the project develops.
 
-## Get a fresh project
+## Getting Started
 
-When you're ready, run:
+### Prerequisites
+
+Install the following before running the project:
+
+* Node.js
+* npm
+* Expo Go on an iOS or Android device
+
+### Installation
+
+Clone the repository:
 
 ```bash
-npm run reset-project
+git clone https://github.com/jb-pryor/pickup-sports-app.git
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+Enter the project directory:
 
-### Other setup steps
+```bash
+cd pickup-sports-app
+```
 
-- To set up ESLint for linting, run `npx expo lint`, or follow our guide on ["Using ESLint and Prettier"](https://docs.expo.dev/guides/using-eslint/)
-- If you'd like to set up unit testing, follow our guide on ["Unit Testing with Jest"](https://docs.expo.dev/develop/unit-testing/)
-- Learn more about the TypeScript setup in this template in our guide on ["Using TypeScript"](https://docs.expo.dev/guides/typescript/)
+Install the dependencies:
 
-## Learn more
+```bash
+npm install
+```
 
-To learn more about developing your project with Expo, look at the following resources:
+Start the Expo development server:
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+```bash
+npx expo start
+```
 
-## Join the community
+Scan the displayed QR code with Expo Go to open the application on a physical device.
 
-Join our community of developers creating universal apps.
+## Project Structure
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+```text
+app/          Application screens and navigation
+components/   Reusable interface components
+assets/       Images, icons, and fonts
+```
+
+Additional directories will be added as the event model, authentication, and backend are implemented.
+
+## Development Roadmap
+
+1. Build the interactive event map
+2. Add event details and map filters
+3. Create the event submission flow
+4. Add navigation for events and profiles
+5. Implement authentication
+6. Connect the application to a database
+7. Add attendance and event-management features
+
+## Author
+
+Developed by [James Pryor](https://github.com/jb-pryor).
+
