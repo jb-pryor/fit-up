@@ -1,98 +1,91 @@
-import * as Device from 'expo-device';
-import { Platform, StyleSheet } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { StyleSheet, Text, View } from "react-native";
+import MapView, { Marker } from "react-native-maps";
 
-import { AnimatedIcon } from '@/components/animated-icon';
-import { HintRow } from '@/components/hint-row';
-import { ThemedText } from '@/components/themed-text';
-import { ThemedView } from '@/components/themed-view';
-import { WebBadge } from '@/components/web-badge';
-import { BottomTabInset, MaxContentWidth, Spacing } from '@/constants/theme';
+const events = [
+  {
+    id: "1",
+    title: "Pickup Soccer",
+    descriptions: "Saturday at 5:00 PM",
+    latitude: 32.8328,
+    longitude: -117.2713,
+    attending: 7,
+  },
+  {
+    id: "2",
+    title: "Casual Pickleball",
+    description: "Sunday at 4:00 PM",
+    latitude: 32.838,
+    longitude: -117.276,
+    attending: 3,
+  },
 
-function getDevMenuHint() {
-  if (Platform.OS === 'web') {
-    return <ThemedText type="small">use browser devtools</ThemedText>;
-  }
-  if (Device.isDevice) {
-    return (
-      <ThemedText type="small">
-        shake device or press <ThemedText type="code">m</ThemedText> in terminal
-      </ThemedText>
-    );
-  }
-  const shortcut = Platform.OS === 'android' ? 'cmd+m (or ctrl+m)' : 'cmd+d';
-  return (
-    <ThemedText type="small">
-      press <ThemedText type="code">{shortcut}</ThemedText>
-    </ThemedText>
-  );
-}
+]
 
 export default function HomeScreen() {
   return (
-    <ThemedView style={styles.container}>
-      <SafeAreaView style={styles.safeArea}>
-        <ThemedView style={styles.heroSection}>
-          <AnimatedIcon />
-          <ThemedText type="title" style={styles.title}>
-            Welcome to&nbsp;Expo
-          </ThemedText>
-        </ThemedView>
-
-        <ThemedText type="code" style={styles.code}>
-          get started
-        </ThemedText>
-
-        <ThemedView type="backgroundElement" style={styles.stepContainer}>
-          <HintRow
-            title="Try editing"
-            hint={<ThemedText type="code">src/app/index.tsx</ThemedText>}
-          />
-          <HintRow title="Dev tools" hint={getDevMenuHint()} />
-          <HintRow
-            title="Fresh start"
-            hint={<ThemedText type="code">npm run reset-project</ThemedText>}
-          />
-        </ThemedView>
-
-        {Platform.OS === 'web' && <WebBadge />}
-      </SafeAreaView>
-    </ThemedView>
+    <View style={styles.container}>
+      <MapView
+        style={styles.map}
+        initialRegion={{
+          latitude: 32.8328,
+          longitude: -117.2713,
+          latitudeDelta: 0.06,
+          longitudeDelta: 0.06,
+        }}
+      >
+        {events.map((event) => (
+          <Marker
+            key={event.id}
+            coordinate={{
+              latitude: event.latitude,
+              longitude: event.longitude,
+            }}
+            title={event.title}
+            description={event.description}
+          >
+            <View style={styles.marker}>
+              <Text style={styles.markerText}>{event.attending}</Text>
+            </View>
+          </Marker>
+        ))}
+      </MapView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    flexDirection: 'row',
-  },
-  safeArea: {
-    flex: 1,
-    paddingHorizontal: Spacing.four,
-    alignItems: 'center',
-    gap: Spacing.three,
-    paddingBottom: BottomTabInset + Spacing.three,
-    maxWidth: MaxContentWidth,
-  },
-  heroSection: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    flex: 1,
-    paddingHorizontal: Spacing.four,
-    gap: Spacing.four,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#ffffff",
   },
   title: {
-    textAlign: 'center',
+    fontSize: 28,
+    fontWeight: "bold",
+    marginBottom: 8,
   },
-  code: {
-    textTransform: 'uppercase',
+
+  map: {
+    flex: 1,
+    width: "100%",
+    height: "100%",
   },
-  stepContainer: {
-    gap: Spacing.three,
-    alignSelf: 'stretch',
-    paddingHorizontal: Spacing.three,
-    paddingVertical: Spacing.four,
-    borderRadius: Spacing.four,
+
+  marker: {
+    width: 48,
+    height: 48,
+    borderRadius: 24,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#D99BE8",
+    borderWidth: 3,
+    borderColor: "#222222",
+  },
+
+  markerText: {
+    color: "#111111",
+    fontSize: 18,
+    fontWeight: "bold",
   },
 });
